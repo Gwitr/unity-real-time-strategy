@@ -21,19 +21,26 @@ public class Selector : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(0)) {
                 GameObject hit_go = hit.transform.gameObject;
-                if ((hit_go.name == "Plane") || (hit_go.name == "Selector")) {
-                    if (hit_go.name == "Selector") {
+                if ((hit_go.name == "Plane") || (hit_go.name == "Selector"))
+                {
+                    if (hit_go.name == "Selector")
+                    {
                         hit_go = GameObject.Find("Plane");
                     }
                     UnityEngine.Object pPrefab = Resources.Load(GameObject.Find("Player").GetComponent<Player>().object_chosen);
                     GameObject pNewObject = (GameObject)GameObject.Instantiate(pPrefab, transform.position, Quaternion.Euler(90.0f, 0.0f, 0.0f));
-                    if (GameObject.Find("Player").GetComponent<Player>().money < pNewObject.GetComponent<BaseObject>().cost) {
+                    if (GameObject.Find("Player").GetComponent<Player>().money < pNewObject.GetComponent<BaseObject>().cost)
+                    {
                         Destroy(pNewObject);
-                    } else {
+                    }
+                    else
+                    {
                         pNewObject.transform.parent = GameObject.Find("Objects").transform;
                         GameObject.Find("Player").GetComponent<Player>().money -= pNewObject.GetComponent<BaseObject>().cost;
                     }
-                } else {
+                }
+                else
+                {
                     BaseObject x = hit_go.GetComponent<BaseObject>();
                     while (x is null)
                     {

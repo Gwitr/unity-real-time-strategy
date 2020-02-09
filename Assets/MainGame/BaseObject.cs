@@ -38,5 +38,12 @@ public class BaseObject : MonoBehaviour
             }
             select_changed = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.Delete)) {
+            if (selected_private) {
+                GameObject.Find("Player").GetComponent<Player>().money += cost;
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
