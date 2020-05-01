@@ -11,6 +11,6 @@ def cmd(c):
 
 commit_msg = input("Wiadomość: ")
 cmd("git add .")
-cmd("git commit -am \"%s\"" % (commit_msg.replace("\"", "\\\"")))
+cmd("git commit -am \"%s\"" % (commit_msg.replace("\\", "\\\\").replace("\"", "\\\"")))
 cmd("git push")
 input("Naciśnij Enter, aby kontynuować . . .")
