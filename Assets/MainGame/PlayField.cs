@@ -7,14 +7,27 @@ public class PlayField : MonoBehaviour
     public float rows;
     public float columns;
 
-    // Start is called before the first frame update
+    private List<EmptyBehaviour> objects;
+
     void Start() {
+        Application.targetFrameRate = 60;
     }
 
-    // Update is called once per frame
+    public void Register(EmptyBehaviour behaviour)
+    {
+        if (objects is null)
+            objects = new List<EmptyBehaviour>();
+        objects.Add(behaviour);
+    }
+
+    public void Unregister(EmptyBehaviour behaviour)
+    {
+        objects.Remove(behaviour);
+    }
+
     void Update() {
-        foreach (Transform child in GameObject.Find("Objects").transform) {
-            child.gameObject.GetComponent<EmptyBehaviour>().GameTick();
+        foreach (var child in objects) {
+            child.GameTick();
         }
     }
 }

@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class FarmBehaviour : EmptyBehaviour
 {
-    public const float money_per_sec = 1.0f;  // ZMIEŃ TĄ LINIĘ W ZALEŻNOŚCI ILE PIENIĘDZY MA DAWAĆ FARMA
-    // Przykład:
-    // 100 G / sekundę:
-    // public const float money_per_sec = 100.0f;
+    public int monetyNaSekunde = 1;
 
-    // 5.4 G / sekundę:
-    // public const float money_per_sec = 5.4f;
-
-    private GameObject player;
-
-    public override void GameTick() {
-        player.GetComponent<Player>().money += money_per_sec * Time.deltaTime;
-    }
+    /* public override void GameTick() {
+        
+    } */
 
     public override void Init() {
-        player = GameObject.Find("Player");
+        // Disable GameTick to speed game up
+        playField.Unregister(this);
+        StartCoroutine(IncreaseMoney());
+    }
+
+    IEnumerator IncreaseMoney()
+    {
+        while (true) {
+            yield return new WaitForSeconds(1.0f);
+            player.money += monetyNaSekunde;
+        }
     }
 }

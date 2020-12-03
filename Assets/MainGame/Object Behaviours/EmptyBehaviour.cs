@@ -4,23 +4,18 @@ using UnityEngine;
 
 public class EmptyBehaviour : MonoBehaviour
 {
+    protected Player player;
+    protected PlayField playField;
+
     void Awake() {
+        player = GameObject.Find("Player").GetComponent<Player>();
+        playField = GameObject.Find("PlayField").GetComponent<PlayField>();
+        playField.Register(this);
         Init();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public virtual void GameTick() { 
-    
+        
     }
 
     public virtual void Init() {
